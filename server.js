@@ -39,4 +39,4 @@ setupRoutes(app, routes);
 
 
 //
-app.listen(8000, () => console.log('Example app is listening on port 3000.'));
+app.listen(PORT, () => console.log('Example app is listening on port 3000.'));
