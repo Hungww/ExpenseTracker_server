@@ -10,7 +10,7 @@ import userRouter from './src/routes/user.route.js';
 
 const app = express();
 
-let PORT = process.env.PORT || 3000;
+let PORT = process.env.PORT || 8000;
 app.use(cors({
     origin : 'exp://localhost:8081'
 }));
@@ -39,4 +39,4 @@ setupRoutes(app, routes);
 
 
 //
-app.listen(PORT, () => console.log('Example app is listening on port 3000.'));
+app.listen(8000, () => console.log('Example app is listening on port 3000.'));
