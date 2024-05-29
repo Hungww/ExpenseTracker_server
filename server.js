@@ -7,6 +7,8 @@ import { setupRoutes } from './src/utils/app.util.js';
 
 
 import userRouter from './src/routes/user.route.js';
+import promotionsRouter from './src/routes/promotions.route.js';
+
 
 const app = express();
 
@@ -20,23 +22,20 @@ app.use(bodyParser.urlencoded({limit: '200mb', extended: true}));
 app.use(bodyParser.text({ limit: '200mb' }));
 //test route
 app.get('/', (req, res) => {
-    res.send('Hello World!');
+    res.send('Backend updated 29/5');
 });
 
 const routes = [
     {
         path: '/user',
         router: userRouter
+    },
+    {
+        path: '/promotions',
+        router: promotionsRouter
     }
 ];
-
 setupRoutes(app, routes);
-
-
-
-
-
-
 
 //
 app.listen(PORT, () => console.log('Example app is listening on port 3000.'));
