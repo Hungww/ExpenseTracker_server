@@ -1,16 +1,15 @@
-import { collection, setDoc, doc, getDoc, deleteDoc } from "firebase/firestore";
+import { collection, setDoc, doc, getDoc, getDocs, addDoc, orderBy, query } from "firebase/firestore";
 import { db } from "../utils/firebase.util.js";
-import { get } from "firebase/database";
+import { set } from "firebase/database";
 
-const User = {
+const Promotion = {
     add: async (data) => {
         try {
-            await setDoc(doc(db, "users", data.uid), {
-                email: data.email,
-                name: data.name,
-                uid: data.uid,
-            
+            const docRef = await addDoc(collection(db, "subscription"), {
+                img: data.img,
+                link: data.link,
             });
+            console.log("Document written with ID: ", docRef.id);
             return data;
         } catch (error) {
             console.error("Error adding document: ", error);
@@ -18,9 +17,9 @@ const User = {
         }
     },
 
-    get: async (uid) => {
+    get: async (id) => {
         try {
-            const docRef = doc(db, "users", uid);
+            const docRef = doc(db, "subscription", id);
             const docSnap = await getDoc(docRef);
             if (docSnap.exists()) {
                 return docSnap.data();
@@ -34,11 +33,11 @@ const User = {
         }
     },
 
-    set: async (uid, data) => {
+    set: async (id, data) => {
         try {
-            const docRef = doc(db, "users", uid);
+            const docRef = doc(db, "subscription", id);
             await setDoc(docRef, data);
-            console.log("Document updated with ID: ", uid);
+            console.log("Document updated with ID: ", id);
             return data;
         } catch (error) {
             console.error("Error updating document: ", error);
@@ -46,24 +45,14 @@ const User = {
         }
     },
 
-    getRef: async (uid) => {
-        try {
-            const docRef = doc(db, "users", uid);
-            return docRef;
-        } catch (error) {
-            console.error("Error getting document: ", error);
-            return error;
-        }
-    },
-
     getAll: async () => {
         try {
-            const users = [];
-            const querySnapshot = await getDocs(collection(db, "users"));
+            const subscriptions = [];
+            const querySnapshot = await getDocs(query(collection(db, "subscription"), orderBy("price", "asc")));
             querySnapshot.forEach((doc) => {
-                users.push(doc.data());
+                subscriptions.push({ id: doc.id, ...doc.data() });
             });
-            return users;
+            return subscriptions;
         } catch (error) {
             console.error("Error getting documents: ", error);
             return error;
@@ -71,4 +60,4 @@ const User = {
     },
 }
 
-export default User;
+export default Promotion;
