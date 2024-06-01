@@ -26,7 +26,6 @@ async function getPromotion(req, res) {
 
 async function getAllPromotions(req, res) {
   try {
-    console.log('Getting all promotions');
     const promotions = await PromotionService.getAllPromotions();
     res.status(200).send(promotions);
   } catch (error) {
