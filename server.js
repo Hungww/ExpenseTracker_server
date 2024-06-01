@@ -8,6 +8,7 @@ import { setupRoutes } from './src/utils/app.util.js';
 
 import userRouter from './src/routes/user.route.js';
 import promotionsRouter from './src/routes/promotions.route.js';
+import subcriptionRouter from './src/routes/subscription.route.js';
 
 
 const app = express();
@@ -33,6 +34,10 @@ const routes = [
     {
         path: '/promotions',
         router: promotionsRouter
+    },
+    {
+        path: '/subscription',
+        router: subcriptionRouter
     }
 ];
 setupRoutes(app, routes);
