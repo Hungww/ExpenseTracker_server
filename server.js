@@ -23,7 +23,7 @@ app.use(bodyParser.urlencoded({limit: '200mb', extended: true}));
 app.use(bodyParser.text({ limit: '200mb' }));
 //test route
 app.get('/', (req, res) => {
-    res.send('Backend updated 29/5');
+    res.send('Backend updated 1/6');
 });
 
 const routes = [
