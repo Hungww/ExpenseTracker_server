@@ -26,7 +26,6 @@ async function getSubscription(req, res) {
 
 async function getAllSubscriptions(req, res) {
     try {
-        console.log('Getting all subscriptions');
         const subscriptions = await SubscriptionService.getAllSubscriptions();
         res.status(200).send(subscriptions);
     } catch (error) {

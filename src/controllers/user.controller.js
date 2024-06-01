@@ -3,7 +3,6 @@ import { createNewUser, getUser, updateUser } from '../services/user.service.js'
 
 async function createUser(req, res) {
   try {
-    console.log(req.body);
     const data = req.body;
     const user = await createNewUser(data);
     res.status(200).send(user);
@@ -15,7 +14,6 @@ async function createUser(req, res) {
 async function getUserById(req, res) {
   try {
     const uid = req.params.uid;
-    console.log(uid);
     const user = await getUser(uid);
     if (user) {
       res.status(200).send(user);
@@ -28,7 +26,6 @@ async function getUserById(req, res) {
 }
 
 async function updateUserbyId(req, res) {
-  console.log("update user by id");
   try {
     const uid = req.params.uid;
     const data = req.body;
