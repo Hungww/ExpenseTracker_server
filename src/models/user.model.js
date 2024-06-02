@@ -57,6 +57,18 @@ const User = {
     }
   },
 
+    set: async (uid, data) => {
+        try {
+            const docRef = doc(db, "users", uid);
+            await setDoc(docRef, data);
+            console.log("Document updated with ID: ", uid);
+            return data;
+        } catch (error) {
+            console.error("Error updating document: ", error);
+            return error;
+        }
+    },
+
   getRef: async (uid) => {
     try {
       const docRef = doc(db, "users", uid);
