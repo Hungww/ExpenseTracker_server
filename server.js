@@ -10,7 +10,7 @@ import userRouter from './src/routes/user.route.js';
 
 const app = express();
 
-let PORT = process.env.PORT || 8000;
+let PORT = process.env.PORT || 3000;
 app.use(cors({
     origin : 'exp://localhost:8081'
 }));
