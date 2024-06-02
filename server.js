@@ -9,6 +9,7 @@ import { setupRoutes } from './src/utils/app.util.js';
 import userRouter from './src/routes/user.route.js';
 import promotionsRouter from './src/routes/promotions.route.js';
 import subcriptionRouter from './src/routes/subscription.route.js';
+import feedbackRouter from './src/routes/feedback.route.js';
 
 
 const app = express();
@@ -23,7 +24,7 @@ app.use(bodyParser.urlencoded({limit: '200mb', extended: true}));
 app.use(bodyParser.text({ limit: '200mb' }));
 //test route
 app.get('/', (req, res) => {
-    res.send('Backend updated 1/6');
+    res.send('Backend updated 2/6');
 });
 
 const routes = [
@@ -38,6 +39,10 @@ const routes = [
     {
         path: '/subscription',
         router: subcriptionRouter
+    },
+    {
+        path: '/feedback',
+        router: feedbackRouter
     }
 ];
 setupRoutes(app, routes);
