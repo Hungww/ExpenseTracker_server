@@ -12,6 +12,11 @@ const subscriptionService = {
     getAllSubscriptions: async () => {
         return await Subscription.getAll();
     },
+
+    getSubscriptionRef: async (id) => {
+        return await Subscription.getRef(id);
+    },
+
 }
 
 export default subscriptionService;

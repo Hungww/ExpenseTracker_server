@@ -1,4 +1,4 @@
-import { collection, setDoc, doc, getDoc, getDocs, addDoc, orderBy, query } from "firebase/firestore";
+import { collection, setDoc, doc, getDoc, getDocs, addDoc, orderBy, query} from "firebase/firestore";
 import { db } from "../utils/firebase.util.js";
 import { set } from "firebase/database";
 
@@ -35,6 +35,7 @@ const Promotion = {
 
     set: async (id, data) => {
         try {
+            
             const docRef = doc(db, "subscription", id);
             await setDoc(docRef, data);
             console.log("Document updated with ID: ", id);
@@ -55,6 +56,17 @@ const Promotion = {
             return subscriptions;
         } catch (error) {
             console.error("Error getting documents: ", error);
+            return error;
+        }
+    },
+
+    getRef: async (id) => {
+        try {
+            const docRef = doc(db, "subscription", id);
+            console.log("Document reference: ", docRef);
+            return docRef;
+        } catch (error) {
+            console.error("Error getting document: ", error);
             return error;
         }
     },

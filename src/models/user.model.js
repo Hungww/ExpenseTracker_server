@@ -13,17 +13,16 @@ import { db } from "../utils/firebase.util.js";
 const User = {
   add: async (data) => {
     try {
-      //get subscription ref where subscriptionName = data.subscriptionName
       const q = query(
         collection(db, "subscription"),
         where("name", "==", "Free")
       );
 
       const querySnapshot = await getDocs(q);
-      console.log(querySnapshot);
+      //console.log(querySnapshot);
       let subscriptionRef = null;
       querySnapshot.forEach((doc) => {
-        console.log(doc.id, " => ", doc.data());
+        //console.log(doc.id, " => ", doc.data());
         subscriptionRef = doc.ref;
       });
 
@@ -60,6 +59,10 @@ const User = {
     set: async (uid, data) => {
         try {
             const docRef = doc(db, "users", uid);
+            if (data.subscription && data.subscription._key && data.subscription._key.path && data.subscription._key.path.segments) {
+              const pathSegments = data.subscription._key.path.segments;
+              data.subscription = doc(db, ...pathSegments);
+            }
             await setDoc(docRef, data);
             console.log("Document updated with ID: ", uid);
             return data;
