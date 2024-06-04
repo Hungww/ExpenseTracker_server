@@ -33,4 +33,18 @@ async function getAllSubscriptions(req, res) {
     }
 }
 
-export { createSubscription, getSubscription, getAllSubscriptions };
+async function getSubscriptionRef(req, res) {
+    try {
+        const id = req.params.id;
+        const subscriptionRef = await SubscriptionService.getSubscriptionRef(id);
+        if (subscriptionRef) {
+            res.status(200).send(subscriptionRef);
+        } else {
+            res.status(404).send({ message: 'Subscription not found' });
+        }
+    } catch (error) {
+        res.status(500).send(error);
+    }
+}
+
+export { createSubscription, getSubscription, getAllSubscriptions, getSubscriptionRef };
