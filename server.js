@@ -11,6 +11,8 @@ import promotionsRouter from './src/routes/promotions.route.js';
 import subscriptionRouter from './src/routes/subscription.route.js';
 import feedbackRouter from './src/routes/feedback.route.js';
 import transactionRouter from './src/routes/transaction.route.js';
+import postRouter from './src/routes/post.route.js';
+
 
 const app = express();
 
@@ -47,6 +49,10 @@ const routes = [
     {
         path: '/transactions',
         router: transactionRouter
+    },
+    {
+        path: '/post',
+        router: postRouter
     }
 ];
 setupRoutes(app, routes);
